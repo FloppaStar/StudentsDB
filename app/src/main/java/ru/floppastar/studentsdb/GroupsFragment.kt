@@ -42,7 +42,8 @@ class GroupsFragment : Fragment() {
             groupName.setText(studentGroup.groupName)
             val btClose = view.findViewById<Button>(R.id.btSaveGroup)
             btClose.setOnClickListener {
-                groupRepository.insertGroup(groupName.text.toString())
+                studentGroup.groupName = groupName.text.toString()
+                groupRepository.editGroup(studentGroup)
                 groupAdapter.update(groupRepository.getAllGroups())
                 groupList = groupRepository.getAllGroups()
                 dialog.dismiss()
