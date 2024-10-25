@@ -31,26 +31,17 @@ class StudentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         studentRepository = StudentRepository(DatabaseHelper(view.context))
         recyclerView = view.findViewById(R.id.studentRecyclerView)
+        studentRepository.insertStudent("Ырка", "Дырка", 52, 22)
+        studentRepository.insertStudent("ds", "fd", 512, 22)
         studentList = studentRepository.getAllStudents()
-//        studentAdapter = StudentAdapter(studentList, { position ->
+//        studentAdapter = StudentAdapter(studentList, studentRepository, { position ->
 //            studentRepository.deleteStudent(studentList[position].studentId)
 //            studentList.removeAt(position)
-//        }, { studentGroup, position ->
-//            val dialog = BottomSheetDialog(view.context)
-//            val view = layoutInflater.inflate(R.layout.group_bottom_sheet_dialog, null)
-//            val groupName = view.findViewById<EditText>(R.id.etGroupName)
-//            groupName.setText(studentGroup.groupName)
-//            val btClose = view.findViewById<Button>(R.id.btSaveGroup)
-//            btClose.setOnClickListener {
-//                studentGroup.groupName = groupName.text.toString()
-//                groupRepository.editGroup(studentGroup)
-//                groupAdapter.update(groupRepository.getAllGroups())
-//                groupList = groupRepository.getAllGroups()
-//                dialog.dismiss()
-//            }
-//            dialog.setCancelable(false)
-//            dialog.setContentView(view)
-//            dialog.show()
+//        }, { student, position ->
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.fragmentContainerViewMain, EditStudentFragment(student))
+//                .addToBackStack("fff")
+//                .commit()
 //        })
 
         recyclerView.adapter = studentAdapter
