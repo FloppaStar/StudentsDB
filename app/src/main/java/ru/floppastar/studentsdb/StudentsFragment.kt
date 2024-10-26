@@ -1,6 +1,7 @@
 package ru.floppastar.studentsdb
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,18 +32,16 @@ class StudentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         studentRepository = StudentRepository(DatabaseHelper(view.context))
         recyclerView = view.findViewById(R.id.studentRecyclerView)
-        studentRepository.insertStudent("Ырка", "Дырка", 52, 22)
-        studentRepository.insertStudent("ds", "fd", 512, 22)
+//        studentRepository.insertStudent("Ырка", "Дырка", 52, 22)
+//        studentRepository.insertStudent("ds", "fd", 512, 22)
+        var groupRepository = GroupRepository(DatabaseHelper(view.context))
         studentList = studentRepository.getAllStudents()
-//        studentAdapter = StudentAdapter(studentList, studentRepository, { position ->
-//            studentRepository.deleteStudent(studentList[position].studentId)
-//            studentList.removeAt(position)
-//        }, { student, position ->
-//            parentFragmentManager.beginTransaction()
-//                .replace(R.id.fragmentContainerViewMain, EditStudentFragment(student))
-//                .addToBackStack("fff")
-//                .commit()
-//        })
+        studentAdapter = StudentAdapter(studentList, studentRepository, { position ->
+            studentRepository.deleteStudent(studentList[position].studentId)
+            studentList.removeAt(position)
+        }, { student, position ->
+            //TODO
+        })
 
         recyclerView.adapter = studentAdapter
 
