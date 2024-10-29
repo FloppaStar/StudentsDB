@@ -41,6 +41,27 @@
             android:hint="Возраст студента"
             android:inputType="text" />
 
+        <EditText
+            android:id="@+id/etGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:editable="false"
+            android:ems="10"
+            android:hint="Группа"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/btChangeGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
+            android:backgroundTint="#84C1CA"
+            android:text="Выбрать группу" />
         <Button
             android:id="@+id/btSaveStudent"
             android:layout_width="match_parent"

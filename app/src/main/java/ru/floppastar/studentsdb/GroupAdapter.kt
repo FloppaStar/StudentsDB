@@ -10,13 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 class GroupAdapter(
     var groupList: MutableList<StudentGroup>,
     private val GroupDeleteListener: (Int) -> Unit,
-    private val GroupEditListener: (StudentGroup, Int) -> Unit)
+    private val GroupEditListener: (StudentGroup, Int) -> Unit,
+    private val GroupSelectListener: (StudentGroup) -> Unit)
     : RecyclerView.Adapter<GroupAdapter.ViewHolder>()  {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvGroupName = itemView.findViewById<TextView>(R.id.tvGroupName)
         val btEdit = itemView.findViewById<ImageView>(R.id.imEdit)
         val btDelete = itemView.findViewById<ImageView>(R.id.imDelete)
+        val btSelect = itemView.findViewById<ImageView>(R.id.imSelect)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.group_item, parent, false)
@@ -35,6 +37,9 @@ class GroupAdapter(
         holder.btEdit.setOnClickListener {
             GroupEditListener(group, position)
             notifyItemChanged(position)
+        }
+        holder.btSelect.setOnClickListener{
+            GroupSelectListener(group)
         }
     }
 

@@ -1,5 +1,6 @@
 package ru.floppastar.studentsdb
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,6 +38,7 @@ class StudentAdapter(
         holder.tvGroup.text = studentRepository.getGroupName(student.groupId)
         holder.btDelete.setOnClickListener {
             StudentDeleteListener(position)
+            Log.d("LOH","$position ${student.firstName} " )
             studentList.removeAt(position)
             notifyItemRemoved(position)
             update(studentList)

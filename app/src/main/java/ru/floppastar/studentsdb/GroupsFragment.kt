@@ -51,6 +51,8 @@ class GroupsFragment : Fragment() {
             dialog.setCancelable(false)
             dialog.setContentView(view)
             dialog.show()
+        }, {studentGroup ->
+
         })
 
         recyclerView.adapter = groupAdapter

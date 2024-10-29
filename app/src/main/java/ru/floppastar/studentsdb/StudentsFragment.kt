@@ -34,32 +34,24 @@ class StudentsFragment : Fragment() {
         recyclerView = view.findViewById(R.id.studentRecyclerView)
 //        studentRepository.insertStudent("Ырка", "Дырка", 52, 22)
 //        studentRepository.insertStudent("ds", "fd", 512, 22)
+//        studentRepository.insertStudent("grfew", "fddasdasd", 512, 22)
+//        studentRepository.insertStudent("432sa", "v23ca", 512, 22)
         var groupRepository = GroupRepository(DatabaseHelper(view.context))
         studentList = studentRepository.getAllStudents()
         studentAdapter = StudentAdapter(studentList, studentRepository, { position ->
             studentRepository.deleteStudent(studentList[position].studentId)
-            studentList.removeAt(position)
         }, { student, position ->
             //TODO
         })
 
         recyclerView.adapter = studentAdapter
 
-//        val btAddGroup = view.findViewById<FloatingActionButton>(R.id.fabAddGroup)
-//        btAddGroup.setOnClickListener {
-//            val dialog = BottomSheetDialog(view.context)
-//            val view = layoutInflater.inflate(R.layout.group_bottom_sheet_dialog, null)
-//            val groupName = view.findViewById<EditText>(R.id.etGroupName)
-//            val btClose = view.findViewById<Button>(R.id.btSaveGroup)
-//            btClose.setOnClickListener {
-//                groupRepository.insertGroup(groupName.text.toString())
-//                groupAdapter.update(groupRepository.getAllGroups())
-//                groupList = groupRepository.getAllGroups()
-//                dialog.dismiss()
-//            }
-//            dialog.setCancelable(false)
-//            dialog.setContentView(view)
-//            dialog.show()
-//        }
+        val btAddStudent = view.findViewById<FloatingActionButton>(R.id.fabAddStudent)
+        btAddStudent.setOnClickListener{
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerViewMain, EditStudentFragment()
+                .addToBackStack("da")
+                .commit()
+        }
     }
 }
