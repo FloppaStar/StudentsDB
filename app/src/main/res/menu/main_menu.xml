@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Группы"
+        android:id="@+id/menuGroup"
+        android:icon="@drawable/outline_groups"/>
+    <item android:title="Студенты"
+        android:id="@+id/menuStudent"
+        android:icon="@drawable/outline_student"/>
+</menu>

@@ -32,16 +32,16 @@ class StudentsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         studentRepository = StudentRepository(DatabaseHelper(view.context))
         recyclerView = view.findViewById(R.id.studentRecyclerView)
-//        studentRepository.insertStudent("Ырка", "Дырка", 52, 22)
-//        studentRepository.insertStudent("ds", "fd", 512, 22)
-//        studentRepository.insertStudent("grfew", "fddasdasd", 512, 22)
-//        studentRepository.insertStudent("432sa", "v23ca", 512, 22)
+
         var groupRepository = GroupRepository(DatabaseHelper(view.context))
         studentList = studentRepository.getAllStudents()
         studentAdapter = StudentAdapter(studentList, studentRepository, { position ->
             studentRepository.deleteStudent(studentList[position].studentId)
         }, { student, position ->
-            //TODO
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerViewMain, EditStudentFragment(null))
+                .addToBackStack("stasyan")
+                .commit()
         })
 
         recyclerView.adapter = studentAdapter
@@ -49,7 +49,7 @@ class StudentsFragment : Fragment() {
         val btAddStudent = view.findViewById<FloatingActionButton>(R.id.fabAddStudent)
         btAddStudent.setOnClickListener{
             parentFragmentManager.beginTransaction()
-                .replace(R.id.fragmentContainerViewMain, EditStudentFragment()
+                .replace(R.id.fragmentContainerViewMain, EditStudentFragment(null))
                 .addToBackStack("da")
                 .commit()
         }
