@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import ru.floppastar.studentsdb.db.DatabaseHelper
 import ru.floppastar.studentsdb.db.GroupRepository
 
 class SelectGroupFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var groupRepository: GroupRepository
+    private lateinit var groupSelectorAdapter: GroupSelectorAdapter
     private var groupList: MutableList<StudentGroup> = mutableListOf()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,8 +25,10 @@ class SelectGroupFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        groupRepository = GroupRepository(DatabaseHelper(view.context))
         recyclerView = view.findViewById(R.id.groupSelecterRecyclerView)
         groupList = groupRepository.getAllGroups()
+        groupSelectorAdapter = GroupSelectorAdapter(groupList, {})
 
     }
 }
